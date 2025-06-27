@@ -56,6 +56,7 @@ MODEL_NAMES = [
     "behbudiy/Mistral-7B-Instruct-Uz",
     "behbudiy/Mistral-Nemo-Instruct-Uz",
     "behbudiy/Llama-3.1-8B-Instuct-Uz",
+    "shaipro/UzLlama-3.1-8B",
 
     "bxod/Llama-3.2-3B-Instruct-uz",
     "bxod/Llama-3.2-1B-Instruct-uz",
@@ -95,11 +96,11 @@ def get_client(MODEL_NAME: str):
                 base_url="https://api.anthropic.com/v1/"  
             )
 
-        # elif "gemini" in MODEL_NAME or "gemma" in MODEL_NAME:
-        #     client = OpenAI(
-        #         api_key=os.environ["GEMINI_API_KEY"],
-        #         base_url="https://generativelanguage.googleapis.com/v1beta/"  
-        #     )
+        elif "gemini" in MODEL_NAME:
+            client = OpenAI(
+                api_key=os.environ["GEMINI_API_KEY"],
+                base_url="https://generativelanguage.googleapis.com/v1beta/"  
+            )
         
         elif 'llama-4' in MODEL_NAME.lower():
             client = OpenAI(
@@ -113,6 +114,15 @@ def get_client(MODEL_NAME: str):
             client = OpenAI(
                 api_key=os.environ["NEBIUS_API_KEY"],
                 base_url="https://api.studio.nebius.ai/v1/"
+            )
+
+        elif "unsloth" in MODEL_NAME or "behbudiy" in MODEL_NAME \
+            or "llama-3.2" in MODEL_NAME.lower() or "lora" in MODEL_NAME \
+            or 'qwen3' in MODEL_NAME.lower() :
+            # Note: This uses hardcoded values which might need configuration
+            client = OpenAI(
+                api_key="token-abc123", 
+                base_url="http://localhost:8000/v1",
             )
         
         elif "command" in MODEL_NAME:
