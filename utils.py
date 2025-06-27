@@ -82,7 +82,7 @@ def get_client(MODEL_NAME: str):
             )
 
         elif "unsloth" in MODEL_NAME or "behbudiy" in MODEL_NAME \
-        or "llama-3.2" in MODEL_NAME.lower() or "lora" in MODEL_NAME \
+        or "shaipro" in MODEL_NAME.lower() or "lora" in MODEL_NAME \
         or 'qwen3' in MODEL_NAME.lower() :
         # Note: This uses hardcoded values which might need configuration
             client = OpenAI(
@@ -108,23 +108,14 @@ def get_client(MODEL_NAME: str):
                 base_url="https://api.groq.com/openai/v1" 
             )
         
-        elif "phi" in MODEL_NAME or 'deepseek' in MODEL_NAME \
-            or 'llama-3.3' in MODEL_NAME.lower() \
-            or 'llama-3.1' in MODEL_NAME.lower():
-            client = OpenAI(
-                api_key=os.environ["NEBIUS_API_KEY"],
-                base_url="https://api.studio.nebius.ai/v1/"
-            )
+        # elif "phi" in MODEL_NAME or 'deepseek' in MODEL_NAME \
+        #     or 'llama-3.3' in MODEL_NAME.lower() \
+        #     or 'llama-3.1' in MODEL_NAME.lower():
+        #     client = OpenAI(
+        #         api_key=os.environ["NEBIUS_API_KEY"],
+        #         base_url="https://api.studio.nebius.ai/v1/"
+        #     )
 
-        elif "unsloth" in MODEL_NAME or "behbudiy" in MODEL_NAME \
-            or "llama-3.2" in MODEL_NAME.lower() or "lora" in MODEL_NAME \
-            or 'qwen3' in MODEL_NAME.lower() :
-            # Note: This uses hardcoded values which might need configuration
-            client = OpenAI(
-                api_key="token-abc123", 
-                base_url="http://localhost:8000/v1",
-            )
-        
         elif "command" in MODEL_NAME:
             client = OpenAI(
                 api_key=os.environ["COHERE_API_KEY"],
